@@ -1,1 +1,623 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Studio Leotards — Stilrena gymnastikdräkter</title>
+  <meta name="description" content="Stilrena gymnastikdräkter för träning och tävling. Premiumkänsla, mjuk stretch och perfekt passform." />
+  <style>
+    :root{
+      --bg: #fbfaf9;
+      --card: rgba(255,255,255,.72);
+      --stroke: rgba(10,10,10,.08);
+      --text: #121212;
+      --muted: rgba(18,18,18,.68);
+
+      /* CAIA-ish pasteller */
+      --pink: #f6c6d4;
+      --lav:  #d7c9ff;
+      --mint: #c9f0e3;
+      --blue: #c9dcff;
+      --gold: #f7e7b6;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.08);
+      --radius: 22px;
+      --radius2: 14px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      background:
+        radial-gradient(900px 450px at 20% 0%, rgba(246,198,212,.35), transparent 60%),
+        radial-gradient(900px 450px at 80% 10%, rgba(201,220,255,.35), transparent 60%),
+        radial-gradient(900px 450px at 60% 90%, rgba(201,240,227,.35), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      letter-spacing: .2px;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* Topbar */
+    header{
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(251,250,249,.78);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 650;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--lav));
+      box-shadow: 0 8px 20px rgba(246,198,212,.45);
+    }
+    nav{
+      display:flex; gap: 18px; align-items:center;
+      font-size: 13px; color: var(--muted);
+    }
+    nav a{ padding: 8px 10px; border-radius: 12px; }
+    nav a:hover{ background: rgba(18,18,18,.05); color: var(--text); }
+    .actions{ display:flex; gap: 10px; align-items:center; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.65);
+      color: var(--text);
+      font-size: 13px;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      cursor: pointer;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.9); border-color: rgba(10,10,10,.14); }
+    .btn:active{ transform: scale(.98); }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, rgba(246,198,212,.95), rgba(215,201,255,.95));
+      box-shadow: 0 18px 60px rgba(215,201,255,.18);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 38px 0 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero-card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(247,231,182,.6), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(201,240,227,.55), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(18deg);
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3.8vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 52ch;
+    }
+    .pill-row{ display:flex; flex-wrap:wrap; gap: 8px; margin: 14px 0 0; }
+    .pill{
+      font-size: 12px;
+      color: rgba(18,18,18,.8);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .hero-actions{ display:flex; gap: 10px; margin-top: 16px; flex-wrap:wrap; }
+
+    .mini{
+      display:grid; gap: 12px;
+    }
+    .mini .box{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.55);
+      padding: 18px;
+    }
+    .kicker{
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-size: 11px;
+      color: rgba(18,18,18,.62);
+      margin: 0 0 8px;
+    }
+    .stat{
+      display:flex; justify-content:space-between; align-items:baseline;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stat b{ color: var(--text); font-weight: 650; }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    h2{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 58ch;
+    }
+
+    /* Product grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .product{
+      grid-column: span 4;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.6);
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.06);
+      display:flex; flex-direction:column;
+      min-height: 360px;
+    }
+    .ph{
+      aspect-ratio: 4 / 3;
+      background:
+        radial-gradient(120px 120px at 25% 30%, rgba(246,198,212,.8), transparent 60%),
+        radial-gradient(160px 160px at 70% 30%, rgba(201,220,255,.75), transparent 60%),
+        radial-gradient(240px 240px at 55% 85%, rgba(201,240,227,.8), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+      border-bottom: 1px solid var(--stroke);
+      position: relative;
+    }
+    .badge{
+      position:absolute; top: 12px; left: 12px;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.7);
+      color: rgba(18,18,18,.8);
+    }
+    .content{ padding: 14px 14px 16px; display:grid; gap: 10px; flex: 1; }
+    .row{ display:flex; justify-content:space-between; gap: 12px; align-items:flex-start; }
+    .title{ font-weight: 650; letter-spacing: -0.2px; }
+    .price{ font-weight: 700; }
+    .meta{ color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .swatches{ display:flex; gap: 8px; align-items:center; }
+    .sw{ width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--stroke); }
+    .sw.pink{ background: var(--pink); }
+    .sw.lav{ background: var(--lav); }
+    .sw.mint{ background: var(--mint); }
+    .sw.blue{ background: var(--blue); }
+
+    .product .cta{
+      display:flex; gap: 10px; align-items:center; justify-content:space-between;
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--stroke);
+    }
+
+    /* Info cards */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.55);
+      padding: 18px;
+    }
+    .card p{ margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    /* FAQ */
+    details{
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      background: rgba(255,255,255,.55);
+      padding: 14px 14px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    /* Newsletter */
+    .newsletter{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(246,198,212,.35), rgba(201,240,227,.30));
+      padding: 22px;
+      display:flex; justify-content:space-between; align-items:center; gap: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.06);
+    }
+    .form{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    input{
+      padding: 11px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.75);
+      min-width: 240px;
+      font-size: 13px;
+      outline: none;
+    }
+    input:focus{ border-color: rgba(10,10,10,.18); background: rgba(255,255,255,.92); }
+
+    footer{
+      padding: 28px 0 38px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; align-items:center; gap: 14px;
+      border-top: 1px solid var(--stroke);
+      padding-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .product{ grid-column: span 6; }
+      .cards{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px){
+      nav{ display:none; }
+      .product{ grid-column: span 12; }
+      input{ min-width: 100%; }
+      .newsletter{ flex-direction: column; align-items:flex-start; }
+      .form{ width: 100%; justify-content:flex-start; }
+      .btn{ width: 100%; }
+      .btn.primary{ width: 100%; }
+      .hero-actions{ width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#top">
+        <span class="dot"></span>
+        <span>Studio Leotards</span>
+      </a>
+
+      <nav aria-label="Huvudmeny">
+        <a href="#kollektion">Kollektion</a>
+        <a href="#storlekar">Storlekar</a>
+        <a href="#material">Material</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn" href="#kollektion">Shoppa</a>
+        <a class="btn primary" href="#newsletter">Få drop-notis</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-card">
+        <p class="kicker">Premium-minimal • Träning & tävling</p>
+        <h1>Stilrena gymnastikdräkter<br/>med perfekt passform.</h1>
+        <p class="lead">
+          Designade för rörelse: mjuk 4-vägsstretch, hög återhämtning och en clean look
+          som känns lika lyxig som funktionell.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#kollektion">Utforska kollektionen</a>
+          <a class="btn" href="#storlekar">Se storleksguide</a>
+        </div>
+
+        <div class="pill-row" aria-label="Highlights">
+          <span class="pill">240–280 gsm</span>
+          <span class="pill">Icke-transparent</span>
+          <span class="pill">Flatlock där det behövs</span>
+          <span class="pill">Sitter som den ska</span>
+        </div>
+      </div>
+
+      <div class="mini">
+        <div class="box">
+          <p class="kicker">Bäst säljande toner</p>
+          <div class="swatches" aria-label="Färgpalett">
+            <span class="sw pink" title="Bubbelgumrosa"></span>
+            <span class="sw lav" title="Lavendel"></span>
+            <span class="sw mint" title="Mint"></span>
+            <span class="sw blue" title="Babyblå"></span>
+          </div>
+          <div class="stat">
+            <span>Leverans</span><b>2–4 arbetsdagar</b>
+          </div>
+          <div class="stat">
+            <span>Retur</span><b>14 dagar</b>
+          </div>
+        </div>
+
+        <div class="box">
+          <p class="kicker">Designfilosofi</p>
+          <p class="sub">
+            Minimalism med mjuka pasteller och rena linjer — alltid träningsvänligt.
+          </p>
+          <div class="stat">
+            <span>Detaljer</span><b>0–1 diskreta accenter</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section id="kollektion">
+      <div class="section-head">
+        <div>
+          <h2>Kollektion</h2>
+          <p class="sub">Fyra signaturfärger. Samma passform. Välj din vibe.</p>
+        </div>
+        <a class="btn" href="#newsletter">Påminn mig vid släpp</a>
+      </div>
+
+      <div class="grid">
+        <!-- Product 1 -->
+        <article class="product">
+          <div class="ph">
+            <span class="badge">Nyhet</span>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div>
+                <div class="title">Aurora — Bubbelgumrosa</div>
+                <div class="meta">Matt, slät yta • Clean training look</div>
+              </div>
+              <div class="price">499 kr</div>
+            </div>
+            <div class="row">
+              <div class="meta">Storlekar: 120–160</div>
+              <div class="swatches">
+                <span class="sw pink" title="Bubbelgumrosa"></span>
+              </div>
+            </div>
+          </div>
+          <div class="cta">
+            <a class="btn" href="#storlekar">Storleksguide</a>
+            <button class="btn primary" onclick="addToCart('Aurora — Bubbelgumrosa')">Lägg i varukorg</button>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product">
+          <div class="ph" style="background:
+            radial-gradient(140px 140px at 25% 35%, rgba(201,240,227,.9), transparent 60%),
+            radial-gradient(170px 170px at 75% 30%, rgba(255,255,255,.7), transparent 60%),
+            radial-gradient(260px 260px at 55% 85%, rgba(201,220,255,.65), transparent 60%),
+            linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));">
+            <span class="badge">Bästsäljare</span>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div>
+                <div class="title">Muse — Mintgrön</div>
+                <div class="meta">Mjuk stretch • Hög återhämtning</div>
+              </div>
+              <div class="price">499 kr</div>
+            </div>
+            <div class="row">
+              <div class="meta">Storlekar: 120–160</div>
+              <div class="swatches">
+                <span class="sw mint" title="Mint"></span>
+              </div>
+            </div>
+          </div>
+          <div class="cta">
+            <a class="btn" href="#material">Material</a>
+            <button class="btn primary" onclick="addToCart('Muse — Mintgrön')">Lägg i varukorg</button>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product">
+          <div class="ph" style="background:
+            radial-gradient(140px 140px at 25% 30%, rgba(215,201,255,.9), transparent 60%),
+            radial-gradient(160px 160px at 70% 30%, rgba(246,198,212,.55), transparent 60%),
+            radial-gradient(240px 240px at 55% 85%, rgba(255,255,255,.7), transparent 60%),
+            linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));">
+          </div>
+          <div class="content">
+            <div class="row">
+              <div>
+                <div class="title">Halo — Lavendel</div>
+                <div class="meta">Minimalistisk • Tävlingsredo uttryck</div>
+              </div>
+              <div class="price">499 kr</div>
+            </div>
+            <div class="row">
+              <div class="meta">Storlekar: 120–160</div>
+              <div class="swatches">
+                <span class="sw lav" title="Lavendel"></span>
+              </div>
+            </div>
+          </div>
+          <div class="cta">
+            <a class="btn" href="#faq">FAQ</a>
+            <button class="btn primary" onclick="addToCart('Halo — Lavendel')">Lägg i varukorg</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="material">
+      <div class="section-head">
+        <div>
+          <h2>Material & kvalitet</h2>
+          <p class="sub">Allt du vill känna – och inget som stör när du tränar.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <p class="kicker">Tyg</p>
+          <b>4-vägsstretch (Lycra/Spandex)</b>
+          <p>Rekommendation: 240–280 gsm (~260 gsm) för premiumkänsla och icke-transparent resultat.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Sömmar</p>
+          <b>Stretchvänlig konstruktion</b>
+          <p>Flatlock där det behövs och ren finish så att dräkten håller för rörelse, tvätt och vardagsträning.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Tryck</p>
+          <b>Sublimering</b>
+          <p>Färger som håller – utan att tyget blir hårt. Minimal design med fokus på helhetskänsla.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIZE GUIDE -->
+    <section id="storlekar">
+      <div class="section-head">
+        <div>
+          <h2>Storleksguide</h2>
+          <p class="sub">Välj hellre tajt än stort — dräkten ska sitta på plats i rörelse.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="kicker">Barnstorlekar</p>
+        <p class="sub">
+          120 / 130 / 140 / 150 / 160<br/>
+          Tips: Ligger barnet mellan två storlekar och vill ha mer “snärt” – välj den mindre.
+          Vill ni ha extra längd i bål – välj den större.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-head">
+        <div>
+          <h2>FAQ</h2>
+          <p class="sub">Snabba svar på de vanligaste frågorna.</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Är dräkterna genomskinliga?</summary>
+        <p>Nej – med rätt tygvikt (240–280 gsm) och korrekt konstruktion blir de icke-transparenta.</p>
+      </details>
+
+      <details>
+        <summary>Är de för träning eller tävling?</summary>
+        <p>Båda. Designen är clean och träningsvänlig, men ser samtidigt premium och “tävling” ut.</p>
+      </details>
+
+      <details>
+        <summary>Hur tvättar man?</summary>
+        <p>30°C, ut och in, ingen torktumlare. Undvik sköljmedel för att behålla elasticitet och tryck.</p>
+      </details>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter">
+      <div class="newsletter">
+        <div>
+          <p class="kicker">Drop-notis</p>
+          <h2 style="margin-top:0;">Få info när nästa släpp landar.</h2>
+          <p class="sub" style="margin:6px 0 0;">Inga spam. Bara nya färger, restocks och förhandsbokning.</p>
+        </div>
+        <form class="form" onsubmit="event.preventDefault(); subscribe();">
+          <input id="email" type="email" placeholder="Din e-post" required />
+          <button class="btn primary" type="submit">Prenumerera</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>© <span id="year"></span> Studio Leotards</div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="#top">Till toppen</a>
+          <a class="btn" href="#kollektion">Shoppa</a>
+          <a class="btn" href="#faq">Support</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const cart = [];
+
+    function addToCart(name){
+      cart.push({ name, qty: 1 });
+      alert("Tillagd i varukorg: " + name + "\\n\\n(Det här är en demo – koppla till Shopify/WooCommerce sen.)");
+    }
+
+    function subscribe(){
+      const email = document.getElementById("email").value.trim();
+      if(!email) return;
+      alert("Tack! Du är nu anmäld: " + email);
+      document.getElementById("email").value = "";
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
